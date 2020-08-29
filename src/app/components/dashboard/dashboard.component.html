@@ -1,0 +1,31 @@
+<h1>List of Restaurants:</h1>
+
+<mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select [(ngModel)]="selectedValue" (ngModelChange)="changeFilter(selectedValue)">
+        <mat-option *ngFor="let item of filter" [value]="item">{{item}}</mat-option>
+    </mat-select>
+</mat-form-field> 
+
+{{restaurants?.length}}
+
+<mat-grid-list cols="6" rowHeight="60px">
+    <ng-container *ngFor="let restaurant of restaurants;index as i">
+        <mat-grid-tile [colspan]="5">{{restaurant.restaurant.name}}</mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <button mat-raised-button color="accent" (click)="createComponent(restaurant?.restaurant,i)">Show
+                more</button>
+        </mat-grid-tile>
+        <mat-grid-tile [@detailExpand]="restaurant?.restaurant?.expand" [colspan]="6"
+            [rowspan]="restaurant?.restaurant?.rows" id="description">
+            <ng-container #resDescContainer>
+            </ng-container>
+        </mat-grid-tile>
+    </ng-container>
+</mat-grid-list>
+
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div>
+    <a href="javascript:void(0)" (click)="logout()">Logout</a>
+</div>

@@ -1,0 +1,6 @@
+<mat-grid-list cols="1">
+    <mat-grid-tile>Name: {{description?.name}}</mat-grid-tile>
+    <mat-grid-tile>Cuisines: {{description?.cuisines}}</mat-grid-tile>
+    <mat-grid-tile>Timings: {{description?.timings}}</mat-grid-tile>
+</mat-grid-list>
+<button mat-raised-button color="accent" (click)="showMoreDetails(description?.id)">More details</button>
